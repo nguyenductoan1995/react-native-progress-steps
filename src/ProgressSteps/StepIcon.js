@@ -9,12 +9,10 @@ class StepIcon extends Component {
     if (this.props.isActiveStep) {
       styles = {
         circleStyle: {
-          width: 40,
-          height: 40,
-          borderRadius: 20,
+          width: 14,
+          height: 14,
+          borderRadius: 7,
           backgroundColor: this.props.activeStepIconColor,
-          borderColor: this.props.activeStepIconBorderColor,
-          borderWidth: 5,
           bottom: 2,
         },
         circleText: {
@@ -57,9 +55,9 @@ class StepIcon extends Component {
     } else if (this.props.isCompletedStep) {
       styles = {
         circleStyle: {
-          width: 36,
-          height: 36,
-          borderRadius: 18,
+          width: 10,
+          height: 10,
+          borderRadius: 5,
           backgroundColor: this.props.completedStepIconColor,
         },
         circleText: {
@@ -103,9 +101,9 @@ class StepIcon extends Component {
     } else {
       styles = {
         circleStyle: {
-          width: 36,
-          height: 36,
-          borderRadius: 18,
+          width: 10,
+          height: 10,
+          borderRadius: 5,
           backgroundColor: this.props.disabledStepIconColor,
         },
         circleText: {
