@@ -101,8 +101,8 @@ class StepIcon extends Component {
       <View style={{ flexDirection: 'column', alignItems: 'center' }}>
         <View style={styles.circleStyle}/>
         <Text style={styles.labelText}>{this.props.label}</Text>
-        {!this.props.isFirstStep && <View style={styles.leftBar} />}
-        {!this.props.isLastStep && <View style={styles.rightBar} />}
+        {/* {!this.props.isFirstStep && <View style={styles.leftBar} />}
+        {!this.props.isLastStep && <View style={styles.rightBar} />} */}
       </View>
     );
   }
