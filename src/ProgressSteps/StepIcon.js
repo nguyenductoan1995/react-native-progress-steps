@@ -1,165 +1,111 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { StyleSheet } from 'react-native'
 
 class StepIcon extends Component {
-  render() {
-    let styles;
 
-    if (this.props.isActiveStep) {
-      styles = {
-        circleStyle: {
-          width: 40,
-          height: 40,
-          borderRadius: 20,
-          backgroundColor: this.props.activeStepIconColor,
-          borderColor: this.props.activeStepIconBorderColor,
-          borderWidth: 5,
-          bottom: 2,
-        },
-        circleText: {
-          alignSelf: 'center',
-          top: 20 / 3,
-        },
-        labelText: {
-          textAlign: 'center',
-          flexWrap: 'wrap',
-          width: 100,
-          paddingTop: 4,
-          fontFamily: this.props.labelFontFamily,
-          color: this.props.activeLabelColor,
-          fontSize: this.props.activeLabelFontSize || this.props.labelFontSize,
-        },
-        leftBar: {
-          position: 'absolute',
-          top: 40 / 2.22,
-          left: 0,
-          right: 40 + 8,
-          borderTopStyle: this.props.borderStyle,
-          borderTopWidth: this.props.borderWidth,
-          borderTopColor: this.props.completedProgressBarColor,
-          marginRight: 40 / 2 + 2,
-        },
-        rightBar: {
-          position: 'absolute',
-          top: 40 / 2.22,
-          right: 0,
-          left: 40 + 8,
-          borderTopStyle: this.props.borderStyle,
-          borderTopWidth: this.props.borderWidth,
-          borderTopColor: this.props.progressBarColor,
-          marginLeft: 40 / 2 + 2,
-        },
-        stepNum: {
-          color: this.props.activeStepNumColor,
-        },
-      };
-    } else if (this.props.isCompletedStep) {
-      styles = {
-        circleStyle: {
-          width: 36,
-          height: 36,
-          borderRadius: 18,
-          backgroundColor: this.props.completedStepIconColor,
-        },
-        circleText: {
-          alignSelf: 'center',
-          top: 18 / 2,
-        },
-        labelText: {
-          textAlign: 'center',
-          flexWrap: 'wrap',
-          width: 100,
-          paddingTop: 4,
-          fontFamily: this.props.labelFontFamily,
-          color: this.props.completedLabelColor,
-          marginTop: 4,
-          fontSize: this.props.labelFontSize,
-        },
-        leftBar: {
-          position: 'absolute',
-          top: 36 / 2,
-          left: 0,
-          right: 36 + 8,
-          borderTopStyle: this.props.borderStyle,
-          borderTopWidth: this.props.borderWidth,
-          borderTopColor: this.props.completedProgressBarColor,
-          marginRight: 36 / 2 + 4,
-        },
-        rightBar: {
-          position: 'absolute',
-          top: 36 / 2,
-          right: 0,
-          left: 36 + 8,
-          borderTopStyle: this.props.borderStyle,
-          borderTopWidth: this.props.borderWidth,
-          borderTopColor: this.props.completedProgressBarColor,
-          marginLeft: 36 / 2 + 4,
-        },
-        stepNum: {
-          color: this.props.completedStepNumColor,
-        },
-      };
-    } else {
-      styles = {
-        circleStyle: {
-          width: 36,
-          height: 36,
-          borderRadius: 18,
-          backgroundColor: this.props.disabledStepIconColor,
-        },
-        circleText: {
-          alignSelf: 'center',
-          top: 18 / 2,
-        },
-        labelText: {
-          textAlign: 'center',
-          flexWrap: 'wrap',
-          width: 100,
-          paddingTop: 4,
-          fontFamily: this.props.labelFontFamily,
-          color: this.props.labelColor,
-          marginTop: 4,
-          fontSize: this.props.labelFontSize,
-        },
-        leftBar: {
-          position: 'absolute',
-          top: 36 / 2,
-          left: 0,
-          right: 36 + 8,
-          borderTopStyle: this.props.borderStyle,
-          borderTopWidth: this.props.borderWidth,
-          borderTopColor: this.props.progressBarColor,
-          marginRight: 36 / 2 + 4,
-        },
-        rightBar: {
-          position: 'absolute',
-          top: 36 / 2,
-          right: 0,
-          left: 36 + 8,
-          borderTopStyle: this.props.borderStyle,
-          borderTopWidth: this.props.borderWidth,
-          borderTopColor: this.props.progressBarColor,
-          marginLeft: 36 / 2 + 4,
-        },
-        stepNum: {
-          color: this.props.disabledStepNumColor,
-        },
-      };
+  getStyleSheetDot = ()=> {
+    if(this.props.isActiveStep){
+      return [
+        styles.circleStyleActive
+      ]
+    } else if(this.props.isCompletedStep) {
+      return [
+       styles.circleStyleActive,
+      ]
+     } else {
+      return [
+        styles.circleStyle,
+      ]
+     }
+  }
+
+  getStyleleftBar = ()=> {
+    if(this.props.isActiveStep){
+      return [
+        styles.leftBarActive
+      ]
     }
+     if(this.props.isCompletedStep) {
+      return [
+        styles.leftBarActive
+      ]
+     } else {
+      return [
+        styles.leftBar,
+      ]
+     }
+  }
 
+  getStylerightBar = ()=> {
+    if(this.props.isActiveStep){
+      return [
+        styles.rightBar,
+      ]
+    }
+     if(this.props.isCompletedStep) {
+      return [
+        styles.rightBarActive
+      ]
+     } else {
+      return [
+        styles.rightBar,
+      ]
+     }
+  }
+
+  render() {
     return (
-      <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-        <View style={styles.circleStyle}>
-          
-        </View>
-        <Text style={styles.labelText}>{this.props.label}</Text>
-        {/* {!this.props.isFirstStep && <View style={styles.leftBar} />}
-        {!this.props.isLastStep && <View style={styles.rightBar} />} */}
+      <View style={styles.container}>
+       {!this.props.isFirstStep && <View style={this.getStyleleftBar()} />}
+        <View style={this.getStyleSheetDot()}/>
+        {!this.props.isLastStep && <View style={this.getStylerightBar()} />}
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:'center'
+  },
+  circleStyle:{
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#f2f2f2',
+    marginVertical:2
+  },
+  circleStyleActive:{
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: '#8cd7aa'
+  },
+  leftBar:{
+    backgroundColor: '#f2f2f2',
+    width:57/2,
+    height:4
+  },
+  leftBarActive:{
+    backgroundColor: '#8cd7aa',
+    width:57/2-2,
+    height:4
+  },
+  rightBar:{
+    backgroundColor: '#f2f2f2',
+    width:57/2,
+    height:4
+  },
+  rightBarActive:{
+    backgroundColor: '#8cd7aa',
+    width:57/2-2,
+    height:4
+  }
+})
 
 StepIcon.propTypes = {
   stepCount: PropTypes.number.isRequired,
