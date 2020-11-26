@@ -78,7 +78,7 @@ class ProgressStep extends Component {
 
     let textStyle = [btnTextStyle];
     if (this.props.previousBtnDisabled) textStyle.push(disabledBtnText);
-    if(this.props.activeStep === 0){
+    if(this.props.activeStep === 0|| this.props.stepCount - 1 === this.props.activeStep){
       return null;
     }
     return (
